@@ -1,0 +1,88 @@
+boton.addEventListener("click", (evento) => {
+                
+                buttons.forEach((value) => {
+                    value.setAttribute("disabled", "");
+                });
+
+                botonPress = evento.path;
+                variable = evento.target;
+                
+                if (variable.innerText === listaPalabras[number].respuestaCorrecta) {
+    
+                    
+    
+                    if (botonPress.length === 10) {
+                        botonPress[2].setAttribute("style", "background-color:green;");
+                    } else {
+                        botonPress[0].setAttribute("style", "background-color:green;");
+                    };
+
+
+                    cambiarPalabra = true;
+    
+                    if (cambiarPalabra === true) {
+                        setTimeout(() => {
+                            buttons.forEach((value) => {
+                                value.removeAttribute("disabled", "");
+                            });
+    
+                            if (botonPress.length === 10) {
+                                botonPress[2].removeAttribute("style", "background-color:green;");
+                            } else {
+                                botonPress[0].removeAttribute("style", "background-color:green;");
+                            }
+    
+                            let aleatorio = Math.floor(Math.random() * listaPalabras.length);
+                            number = aleatorio;
+
+
+                            if (numeroAnterior === number) {
+                                numeroAnterior = number;
+
+                                preguntas(number);
+                            } else {
+                                preguntas(number);
+                            };
+    
+                        }, 1500);
+                    }
+    
+                } else {
+                    if (botonPress.length === 10) {
+                        botonPress[2].setAttribute("style", "background-color:red;");
+                    } else {
+                        botonPress[0].setAttribute("style", "background-color:red;");
+                    }
+    
+                    buttons.forEach((value) => {
+                        value.setAttribute("disabled", "");
+                    });
+                    cambiarPalabra = true;
+                    if (cambiarPalabra === true) {
+    
+                        setTimeout(() => {
+    
+                            buttons.forEach((value) => {
+                                value.removeAttribute("disabled", "");
+                            });
+    
+                            if (botonPress.length === 10) {
+                                botonPress[2].removeAttribute("style", "background-color:red;");
+                            } else {
+                                botonPress[0].removeAttribute("style", "background-color:red;");
+                            }
+                            let aleatorio = Math.floor(Math.random() * listaPalabras.length);
+                            number = aleatorio;
+
+                            if (numeroAnterior === number) {
+                                numeroAnterior = number;
+                                preguntas(number);
+                            } else {
+                                preguntas(number);
+                            };
+                        }, 1500);
+                        
+                    }
+    
+                }
+            })
